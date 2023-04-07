@@ -1,13 +1,28 @@
 <aside class="sidebar">
   <div class="container sidebar-sticky">
+    {{ with .Site.Params.authorimage }}
+      <div class="author-image">
+        <img src="{{ $.Site.Params.authorimage }}" alt="Author Image" class="author-image">
+      </div>
+    {{end}}
+
     <div class="sidebar-about">
-      <a href="{{ .Site.BaseURL }}"><h1>{{ .Site.Title }}</h1></a>
-      <p class="lead">
-      {{ with .Site.Params.description }} {{.}} {{ else }}An elegant open source and mobile first theme for <a href="http://hugo.spf13.com">hugo</a> made by <a href="http://twitter.com/mdo">@mdo</a>. Originally made for Jekyll.{{end}}
-      </p>
+      <!-- Highlighted text below Image -->
+      <a href="{{ .Site.BaseURL }}"><h2>{{ .Site.Title }}</h2></a>
+
+      <!-- Social Media Links -->
+      <div class="social-media-links">
+        <a style="color:white" href="https://twitter.com/{{$.Site.Params.twitter}}" rel="me"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a>&nbsp;&nbsp;
+        <a style="color:white" href="https://github.com/{{$.Site.Params.github}}" rel="me"><i class="fab fa-github fa-lg" aria-hidden="true"></i></a>&nbsp;&nbsp;
+        <a style="color:white" href="https://www.linkedin.com/in/{{$.Site.Params.linkedin}}" rel="me"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a>
+      </div>
+      <!--p class="lead">
+        {{ with .Site.Params.description }} {{.}} {{ else }}{{end}}
+      </p-->
     </div>
 
-    <nav>
+    <!-- Posts Navigation -->
+    <nav class="posts-nav">
       <ul class="sidebar-nav">
         <li><a href="{{ .Site.BaseURL }}">Home</a> </li>
         {{ range .Site.Menus.main -}}
@@ -16,6 +31,11 @@
       </ul>
     </nav>
 
-    <p>{{ with .Site.Params.copyright }}{{.}}{{ else }}&copy; {{ now.Format "2006"}}. All rights reserved. {{end}}</p>
+    <div class="rights-reserved">
+      <p>
+        {{ with .Site.Params.copyright }}{{.}}{{ else }}&copy; {{ now.Format "2006"}}. All rights reserved. {{end}}
+      </p>
+    </div>
+
   </div>
 </aside>
